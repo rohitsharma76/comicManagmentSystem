@@ -1,4 +1,4 @@
-<%@ include file="common/header.jspf" %>
+<%@ include file="../../common/header.jspf" %>
 	<div class="container">
 		<table class="table" >
 			<caption>welcome to RMS</caption>
