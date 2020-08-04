@@ -8,8 +8,9 @@
 </div>
 <table style="background-color: White;">
 	<tr>
-		<td><img alt="" src="/images/details.jpg"
-										title="view details of this comic"></td><td><img></td><td><img></td>
+		<td><a href="/bms/addcomics" > <img alt="" src="/images/Add.jpg"
+										title="Add Comics to your collection"></a></td><td><a  href="/bms/comicslist"><img alt="" src="/images/View.jpg"
+										title="View your Comics collection"></a></td><td><img></td>
 	</tr>
 </table>
 		<!-- <table class="table" >
