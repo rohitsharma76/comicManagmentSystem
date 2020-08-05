@@ -25,12 +25,12 @@ public class BooksLoginController
 	@Autowired
 	BooksUserRepository userrepo;
 	
-	@RequestMapping(value="/bookslogin", method = RequestMethod.GET)
+	@RequestMapping(value="/bms/bookslogin", method = RequestMethod.GET)
 	public String showLoginPage(ModelMap model){
-		return "bookslogin";
+		return "bms/bookslogin";
 	}
 
-	@RequestMapping(value = "/bookslogin", method = RequestMethod.POST)
+	@RequestMapping(value = "/bms/bookslogin", method = RequestMethod.POST)
     public String handleLogin(ModelMap model, @RequestParam String user,
             @RequestParam String password) 
 	{
@@ -48,7 +48,7 @@ public class BooksLoginController
         } 
         else {
             model.put("errorMessage", "Invalid Credentials for books!!");
-            return "bookslogin";
+            return "bms/bookslogin";
         }
 	}
 }

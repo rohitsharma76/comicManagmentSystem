@@ -26,4 +26,4 @@
 		</table>
 		
 	</div>
-<%@ include file="common/footer.jspf" %>
+<%@ include file="../../common/footer.jspf" %>

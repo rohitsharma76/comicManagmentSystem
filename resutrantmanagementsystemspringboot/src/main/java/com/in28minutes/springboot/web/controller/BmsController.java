@@ -84,6 +84,16 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 	      return publshersList;
 	   }
 	
+	@RequestMapping(value="/bms/viewComicsHome", method = RequestMethod.GET)
+	public String ViewhomeComics(ModelMap model)
+	{
+		Long userID = (Long) model.get("user");
+		BooksUser user = userrepo.getOne(userID);
+		System.out.println("user.getResturentName()"+user.getUserName());
+		model.put("username", user.getUserName());
+		return "/bms/viewComicHome";
+	}
+	
 	@RequestMapping(value="/bms/comicslist/{pageNumber}", method = RequestMethod.GET)
 	public String ViewByPageComics(ModelMap model ,@PathVariable("pageNumber") int currentPage)
 	{
