@@ -1,4 +1,4 @@
-package com.in28minutes.springboot.web.exception;
+package com.in28minutes.springboot.web.controller;
 
 import java.util.Date;
 
