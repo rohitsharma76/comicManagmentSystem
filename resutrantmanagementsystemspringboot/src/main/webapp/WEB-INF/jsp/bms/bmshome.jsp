@@ -13,19 +13,19 @@
 
     <!-- Favicon -->
     <link rel="icon" href="../../images/core-img/favicon.ico">
-
-    <!-- Core Stylesheet -->
-    <link href="../../css/style.css" type="text/css" rel="stylesheet">
+<link href="../../css/style.css" type="text/css" rel="stylesheet">
      <link href="../../css/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet">
       <link href="../../css/others/animate.css" type="text/css" rel="stylesheet"> 
-      <link href="../../css//others/magnific-popup.css" type="text/css" rel="stylesheet">
+      <link href="../../css/others/magnific-popup.css" type="text/css" rel="stylesheet">
        <link href="../../css/others/font-awesome.min.css" type="text/css" rel="stylesheet"> 
-      <link href="../../css//others/elegant-font.css" type="text/css" rel="stylesheet">
+      <link href="../../css/others/elegant-font.css" type="text/css" rel="stylesheet">
        <link href="../../css/others/themify-icons.css" type="text/css" rel="stylesheet">
          <link href="../../css/style.css" type="text/css" rel="stylesheet">
     
     <!-- Responsive CSS -->
     <link href="../../css/responsive/responsive.css" rel="stylesheet">
+    <!-- Core Stylesheet -->
+    
 
 </head>
 

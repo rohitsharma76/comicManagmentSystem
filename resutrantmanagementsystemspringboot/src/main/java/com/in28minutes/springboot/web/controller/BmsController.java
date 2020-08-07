@@ -53,6 +53,13 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	ComicDetailService comicDetailService;
 	
+	@RequestMapping(value="/bms/menu", method = RequestMethod.GET)
+	public String menu(ModelMap model)
+	{
+		
+		return "/bms/menu";
+	}
+	
 	
 	@RequestMapping(value="/bms/bmshome", method = RequestMethod.GET)
 	public String welcomepage(ModelMap model)
