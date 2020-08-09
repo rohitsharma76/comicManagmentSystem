@@ -167,9 +167,22 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 	public String showComic(@RequestParam Long id , ModelMap model)
 	{
 		
-		ComicDetail comicdetail = comicDetailService.findByID(id);
-		model.put("ComicDetail", comicdetail);
-		model.put("id", comicdetail.getId());
+		ComicDetail comicDetail = comicDetailService.findByID(id);
+		model.put("ComicDetail", comicDetail);
+		model.addAttribute("comicName", comicDetail.getComicName());
+		model.addAttribute("charcterName", comicDetail.getCharcterName());
+		model.addAttribute("price", comicDetail.getPrice());
+		model.addAttribute("language", comicDetail.getLanguage());
+		model.addAttribute("imageUrl", comicDetail.getImageUrl());
+		model.addAttribute("publlicationYear", comicDetail.getPubllicationYear());
+		model.addAttribute("scanned", comicDetail.getScanned());
+		model.addAttribute("serialNumber", comicDetail.getSerialNumber());
+		model.addAttribute("publicationHouse", comicDetail.getPublicationHouse());
+		model.addAttribute("artist", comicDetail.getArtist());
+		model.addAttribute("notes", comicDetail.getNotes());
+		model.addAttribute("comicType", comicDetail.getComicType());
+		model.addAttribute("imageName", comicDetail.getImageUrl());
+		model.addAttribute("comicLocation", comicDetail.getComicLocation());
 		return "/bms/viewComicPage";
 	} 
 	@RequestMapping(value="/update-comic", method = RequestMethod.GET)
