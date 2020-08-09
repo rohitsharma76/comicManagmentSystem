@@ -144,6 +144,14 @@
                                 </div>
                             </div>
                         </div>
+                         <div class="form-row">
+                            <div class="name"><form:label path = "imageUrl">Image Name</form:label></div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <form:input path = "imageUrl"  class="input--style-5" type="text" name="imageUrl" />
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="name"><form:label path = "price">Price</form:label></div>
                             <div class="value">
@@ -226,22 +234,23 @@
 								</div>
 							</div>
 						</div>
-
-
-						<%--  <div class="form-row">
-                            <div class="name"><form:label path = "comicLocation" title="where is the comic lying ? which book shelf ">Comic Location</form:label></div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <form:textarea path = "comicLocation"  class="input--style-5"  rows="2" />
-                                </div>
-                            </div>
-                        </div> --%>
-                       
                         <div>
                             <button class="btn btn--radius-2 btn--red" type="submit">Add</button>
                         </div>
                     </form:form>
-                </div>
+                   
+                    <%-- <form  action="/uploadImage" method="post" enctype="multipart/form-data">
+                     <div class="form-row">
+                    <div class="name">
+                    <input type="file" name="imageFile">
+                    </div>
+                    <div >
+                    <input type="submit" value="Upload " class="btn btn--radius-2 btn--red" >
+                    </div>
+                    </div>
+                    </form> --%>
+                    
+                    
             </div>
         </div>
     </div>

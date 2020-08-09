@@ -1,137 +1,221 @@
-<%@ include file="../commonbms/header.jspf" %>
-<%@ include file="../commonbms/navigation.jspf" %>
-<script>
+<!DOCTYPE html>
 
-</script>
-<div class="container">
-	<table class="table " >
-		<tr>
-			<td>Welcome to your comic collection , you have ${totalRecords}
-				comics in your collection</td>
-		</tr>
-		<tr>
-			<td>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html lang="en">
+  <head>
+    <title>CMS &mdash; Comic Collection</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-				<div class="grid-container">
-					<c:forEach items="${comicsList}" var="comic">
-						<div>${comic.comicName}
-							<table style="width: 100%">
-								<tr>
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800" rel="stylesheet">
+    <link rel="stylesheet" href="../../listing/fonts/icomoon/style.css">
 
-									<td><img alt="" src="/images/details.jpg"
-										title="view details of this comic"></td>
-									<td><a href="/update-comic?id=${comic.id}"><img alt=""
-											src="/images/update.jpg"
-											title="Update details of this comic "></a></td>
-									<td><a href="/delete-comic?id=${comic.id}"><img alt=""
-											src="/images/delete.jpg" title="delete this comic "></a></td>
+    <link rel="stylesheet" href="../../listing/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../listing/css/magnific-popup.css">
+    <link rel="stylesheet" href="../../listing/css/jquery-ui.css">
+    <link rel="stylesheet" href="../../listing/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../listing/css/owl.theme.default.min.css">
 
-								</tr>
-							</table>
-						</div>
+    <link rel="stylesheet" href="../../listing/css/bootstrap-datepicker.css">
 
-					</c:forEach>
-				</div>
+    <link rel="stylesheet" href="../../listing/fonts/flaticon/font/flaticon.css">
 
-			</td>
-		</tr>
-		</table>
-		<table>
-		<tr>
-			<td>Number of records per page : ${elementsOnPage}</td>
-		</tr>
-		<tr style="white-space: none">
-			<td>Page : ${currentPage} of ${totalPages}</td>
-			<td><c:forEach var="counter" begin="1" end="${totalPages}">
-					<a href="/bms/comicslist/${counter}"><c:out value="${counter}" /></a>&nbsp;&nbsp;
-    					</c:forEach></td>
-		</tr>
-		<tr>
-			<td>
-				<div>
-					<a class="button" href="/bms/addcomics">Add comics</a>
-				</div>
+    <link rel="stylesheet" href="../../listing/css/aos.css">
+    <link rel="stylesheet" href="../../listing/css/rangeslider.css">
 
-			</td>
-		</tr>
-		</table>
-
-	
-</div>
-<script>
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } 
-  });
+    <link rel="stylesheet" href="../../listing/css/style.css">
+    <style type="text/css">
+    .collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
 }
 
-
-function myFunction(id)
-{
-	alert(id);
-var popup = document.getElementById(id);
-popup.classList.toggle("show");
+.active, .collapsible:hover {
+  background-color: #555;
 }
-</script>
-		<%-- <tr>
-			<td>
-				<table class="table table-striped">
-			
-					<thead>
-						<tr>
-							<th>Comic Name</th>
-							<th style="white-space:nowrap">Comic character Name</th>
-							<th style="white-space:nowrap" >serial Number of comic</th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${comicsList}" var="comic">
-							<tr><td style="white-space:nowrap">${comic.comicName}</td>
-							<td>${comic.charcterName}</td>
-							<td>${comic.serialNumber}</td>
-							<td><a type="button" class="btn btn-success" href="/update-comic?id=${comic.id}">Update</a></td>
-							<td><a type="button" class="btn btn-warning" href="/delete-comic?id=${comic.id}">Delete</a></td>
-							</tr>
-							<tr><td colspan="8">
-							<button class="collapsible">details about ${comic.comicName} </button>
-							<div class="content" >
-							<table  style="width:100%; font-weight:bold" >
-							<tr><td>publication House: </td><td>${comic.publicationHouse}</td></tr>
-							<tr><td>Comic Type: </td><td>${comic.comicType}</td></tr>
-							<tr><td>Artist: </td><td>${comic.artist}</td></tr>
-							<tr><td>Price: </td><td>${wicomic.price}</td></tr>
-							<tr><td>Language: </td><td>${comic.language}</td></tr>
-							<tr><td>publication Year: </td><td>${comic.publlicationYear}</td></tr>
-							<tr><td>Scanned ? </td><td>${comic.scanned}</td></tr>
-							<tr><td>location of Comic : </td><td>${comic.comicLocation}</td></tr>
-							<tr><td>Comments/Info about comic  :  </td><td>${comic.notes}</td></tr>
-							</table>
-							</div>
-							</td></tr>
-						</c:forEach>
-						<tr><td>Number of records per page : ${elementsOnPage}</td></tr>
-						<tr><td> Page : ${currentPage} of ${totalPages}</td>
-						<td>
-						 <c:forEach var="counter" begin="1" end="${totalPages}">
-        					<a href="/bms/comicslist/${counter}"><c:out value="${counter}" /></a>&nbsp;&nbsp;
-    					</c:forEach>
 
-						</td></tr>
-						</tbody>
-				</table>
-			</td>
-		</tr> --%>
-	
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
 
-<%@ include file="../commonbms/footer.jspf" %>
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+  font-weight: bold;
+  
+}
+    .grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto ;
+  grid-gap: 10px;
+  background-color: #FFFFFF;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 15px 0;
+  font-size: 20px;
+  
+}
+
+</style>
+  </head>
+<body>
+ 
+    
+      <!-- ***** Header Area Start ***** -->
+ <iframe src="/bms/menu" height="80px"  width="100%" scrolling="no" >
+</iframe>    <!-- ***** Header Area End ***** -->
+   
+
+  
+    
+    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(../../images/bg-img/hero-1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+
+          <div class="col-md-10" data-aos="fade-up" data-aos-delay="400">
+            
+            
+            <div class="row justify-content-center mt-5">
+              <div class="col-md-8 text-center">
+                <h1>comics Khazana</h1>
+                <p class="mb-0"><b>you have total ${totalRecords} Comics in your comics Khazana</b></p>
+              </div>
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>  
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+
+            <div class="row">
+              <div class="col-lg-6">
+              <div class="grid-container">
+                <c:forEach items="${comicsList}" var="comic">
+                <div class="d-block d-md-flex listing vertical">
+                  <a href="#" class="img d-block" style="background-image: url('../../images/comiccover/${comic.imageUrl}')"></a>
+                  <div class="lh-content">
+                    <span class="category" style="white-space:noWrap">${comic.charcterName}</span>
+                    <h3><a href="/View-comic?id=${comic.id}" title="click for More Info">${comic.comicName}</a></h3>
+                    <address>${comic.serialNumber}</address>
+                    <address>${comic.publicationHouse}</address>
+                    <p class="mb-0">
+                      
+                      <span class="review"><a href="/View-comic?id=${comic.id}" title="click for Info/Edit/Delete this comic ">Click here for More Info</a></span>
+                    </p>
+                  </div>
+                </div>
+				</c:forEach>
+				</div>	
+              </div>
+         
+             </div>
+            
+
+            </div>
+
+            <div class="col-12 mt-5 text-center">
+              <div class="custom-pagination">
+              <c:forEach var="counter" begin="1" end="${totalPages}">
+               <a href="/bms/comicslist/${counter}"><c:out value="${counter}" /></a>
+              </c:forEach>
+               
+              </div>
+            </div>
+
+          </div>
+        
+      </div>
+    </div>
+
+
+    
+    
+
+    
+    
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-6">
+                <h2 class="footer-heading mb-4">About</h2>
+                <p>CMS for Managing your comic collection effortlessly </p>
+              </div>
+              
+              <div class="col-md-3">
+                <h2 class="footer-heading mb-4">Navigations</h2>
+                <ul class="list-unstyled">
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Add comics</a></li>
+                  <li><a href="#">Search comics</a></li>
+                  <li><a href="#">View your comic collection</a></li>
+                  <li><a href="#">Contact Us</a></li>
+                </ul>
+              </div>
+            
+            </div>
+          </div>
+         
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">
+            <div class="border-top pt-5">
+            <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../../listing/js/jquery-3.3.1.min.js"></script>
+  <script src="../../listing/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="../../listing/js/jquery-ui.js"></script>
+  <script src="../../listing/js/popper.min.js"></script>
+  <script src="../../listing/js/bootstrap.min.js"></script>
+  <script src="../../listing/js/owl.carousel.min.js"></script>
+  <script src="../../listing/js/jquery.stellar.min.js"></script>
+  <script src="../../listing/js/jquery.countdown.min.js"></script>
+  <script src="../../listing/js/jquery.magnific-popup.min.js"></script>
+  <script src="../../listing/js/bootstrap-datepicker.min.js"></script>
+  <script src="../../listing/js/aos.js"></script>
+  <script src="../../listing/js/rangeslider.min.js"></script>
+
+  <script src="../../listing/js/main.js"></script>
+    
+  </body>
+</html>

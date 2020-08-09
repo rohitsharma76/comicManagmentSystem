@@ -1,5 +1,6 @@
 package com.in28minutes.springboot.web.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.aspectj.apache.bcel.generic.MULTIANEWARRAY;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.in28minutes.springboot.web.model.bms.BooksUser;
 import com.in28minutes.springboot.web.model.bms.BooksUserRepository;
@@ -144,6 +147,31 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 		return "/bms/addcomics";
 	}
 	
+	/*
+	 * @RequestMapping(value="/bms/viewComicPage", method = RequestMethod.GET)
+	 * public String showSingleComic(@RequestParam Long id , ModelMap model) {
+	 * 
+	 * ComicDetail comicdetail = comicDetailService.findByID(id);
+	 * model.put("ComicDetail", comicdetail); model.put("id", comicdetail.getId());
+	 * return "/bms/addcomics"; }
+	 */
+	
+	/*
+	 * @RequestMapping(value="/bms/viewComicPage", method = RequestMethod.POST)
+	 * public String singleComic(@RequestParam Long id , ModelMap model) {
+	 * ComicDetail comicdetail = comicDetailService.findByID(id);
+	 * model.put("ComicDetail", comicdetail); model.put("id", comicdetail.getId());
+	 * return "/bms/viewComicPage"; }
+	 */
+	@RequestMapping(value="/View-comic", method = RequestMethod.GET)
+	public String showComic(@RequestParam Long id , ModelMap model)
+	{
+		
+		ComicDetail comicdetail = comicDetailService.findByID(id);
+		model.put("ComicDetail", comicdetail);
+		model.put("id", comicdetail.getId());
+		return "/bms/viewComicPage";
+	} 
 	@RequestMapping(value="/update-comic", method = RequestMethod.GET)
 	public String showUpdateComic(@RequestParam Long id , ModelMap model)
 	{
@@ -182,6 +210,7 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 		model.addAttribute("artist", comicDetail.getArtist());
 		model.addAttribute("notes", comicDetail.getNotes());
 		model.addAttribute("comicType", comicDetail.getComicType());
+		model.addAttribute("imageName", comicDetail.getImageUrl());
 		model.addAttribute("comicLocation", comicDetail.getComicLocation());
 		comicDetailService.AddNewComic(comicDetail);
 		return "redirect:/bms/comicslist";
@@ -218,18 +247,51 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@RequestMapping(value="/bms/searchcomics", method = RequestMethod.GET)
 	public String showComics(ModelMap model)
 	{
-		List<ComicDetail> comicDetail =   comicDetailService.findByComiCNameOrArtists("cha");
-		logger.info("size of comic detail list is "+comicDetail.size());
+		//Page<ComicDetail> page =  comicDetailService.findByComiCNameOrArtists(keyword,currentPage);
+		//logger.info("size of comic detail list is "+comicDetail.size());
 		//model.put("comicsList", comicDetailService.);
 		return "/bms/searchcomics";
 	}
 	
-	@RequestMapping(value="/bms/searchcomics", method = RequestMethod.POST)
-	public String searchComic(ModelMap model, @RequestParam String keyword) 
+	@RequestMapping(value="/bms/searchcomics/{pageNumber}", method = RequestMethod.POST)
+	public String searchComic(ModelMap model, @RequestParam String keyword ,@PathVariable("pageNumber") int currentPage) 
 	{
-		model.put("comicsList", comicDetailService.findByComiCNameOrArtists(keyword));
-		model.put("count", comicDetailService.findByComiCNameOrArtists(keyword).size());
+		
+		Page<ComicDetail> page =  comicDetailService.findByComiCNameOrArtists(keyword,currentPage);
+		List<ComicDetail> comicsListPaged= page.getContent();
+		model.put("elementsOnPage", page.getNumberOfElements());
+		model.put("totalRecords", page.getTotalElements());
+		model.put("totalPages", page.getTotalPages());
+		model.put("currentPage", currentPage);
+		model.put("comicsList", comicsListPaged);
 		return "/bms/comicslist";
+		/*
+		 * model.put("comicsList",
+		 * comicDetailService.findByComiCNameOrArtists(keyword)); model.put("count",
+		 * comicDetailService.findByComiCNameOrArtists(keyword).size()); return
+		 * "/bms/comicslist";
+		 */
+	}
+	
+	@RequestMapping(value="/bms/searchcomics", method = RequestMethod.POST)
+	public String showallComics(ModelMap model ,  @RequestParam String keyword)
+	{
+		return searchComic(model,keyword,1);
+	}
+	
+	@PostMapping("/uploadImage")
+	public String uploadImage(@RequestParam("imageFile") MultipartFile imageFile)
+	{
+		String returnvalue="";
+		try {
+			comicDetailService.saveImage(imageFile);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.error(e.toString());
+		}
+		return "/bms/comicslist";
+		
 	}
 	
 	

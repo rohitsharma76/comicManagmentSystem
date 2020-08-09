@@ -1,6 +1,10 @@
 package com.in28minutes.springboot.web.service;
 
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -12,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.in28minutes.springboot.web.model.bms.ComicDetail;
 import com.in28minutes.springboot.web.model.bms.ComicDetailRepository;
@@ -90,7 +95,7 @@ public class ComicDetailService
 	
 	public Page<ComicDetail> findAllComics(int pageNumber)
 	{
-		Pageable pageable =  PageRequest.of(pageNumber -1 , 8);
+		Pageable pageable =  PageRequest.of(pageNumber -1 , 12);
 		return comicDetails.findAll(pageable);
 	}
 	
@@ -115,9 +120,21 @@ public class ComicDetailService
 		
 	}
 	
-	public List<ComicDetail> findByComiCNameOrArtists(String Keyword)
+	public Page<ComicDetail> findByComiCNameOrArtists(String Keyword ,int pageNumber)
 	{
-		return comicDetails.findComicsByKeyword(Keyword);
+		Pageable pageable =  PageRequest.of(pageNumber -1 , 12);
+		return comicDetails.findComicsByKeyword(Keyword, pageable);
+	}
+
+	public void saveImage(MultipartFile imageFile) throws IOException {
+		// TODO Auto-generated method stub
+		logger.info("ComicDetail ID is "+imageFile.getOriginalFilename());
+		String folder="/images/comiccover";
+		byte[] bytes = imageFile.getBytes();
+		logger.info("ComicDetail ID is "+imageFile.getOriginalFilename());
+		//Path path = Paths.get(folder+imageFile.getOriginalFilename());
+	
+		//Files.write(path, bytes);
 	}
 	
 	
