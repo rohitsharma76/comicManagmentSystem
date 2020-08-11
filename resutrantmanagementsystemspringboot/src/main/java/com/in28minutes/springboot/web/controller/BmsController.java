@@ -168,6 +168,7 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 	{
 		
 		ComicDetail comicDetail = comicDetailService.findByID(id);
+		model.put("id", comicDetail.getId());
 		model.put("ComicDetail", comicDetail);
 		model.addAttribute("comicName", comicDetail.getComicName());
 		model.addAttribute("charcterName", comicDetail.getCharcterName());
@@ -198,9 +199,10 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@RequestMapping(value="/update-comic", method = RequestMethod.POST)
 	public String updateComic(@RequestParam Long id , ModelMap model)
 	{
-				ComicDetail comicdetail = comicDetailService.findByID(id);
+		ComicDetail comicdetail = comicDetailService.findByID(id);
 		model.put("ComicDetail", comicdetail);
 		model.put("id", comicdetail.getId());
+		
 		return "/bms/addcomics";
 	}
 	

@@ -81,7 +81,7 @@
                 </div>
                 <div class="card-body">
                     <form:form method="POST" action="/bms/addcomics" modelAttribute="ComicDetail">
-                        
+                        <form:hidden path = "id"></form:hidden>
                         <div class="form-row">
                             <div class="name"><form:label path = "comicName">Comic Name</form:label></div>
                             <div class="value">
@@ -254,7 +254,7 @@
             </div>
         </div>
     </div>
-
+</div>
     <!-- Jquery JS-->
     <script src="../../add/vendor/jquery/jquery.min.js"></script>
     <!-- Vendor JS-->

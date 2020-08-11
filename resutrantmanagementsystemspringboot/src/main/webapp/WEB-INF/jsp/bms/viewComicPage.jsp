@@ -144,11 +144,11 @@
 					</div>
 					<div  class="form-row">
 						<div class="name">
-							<button class="btn btn--radius-2 btn--red" type="button">Edit</button>
+							<a type="button" class="btn btn-success" href="/update-comic?id=${id}">Update</a>
 						</div>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<divclass="value"  >
-							&nbsp;<button class="btn btn--radius-2 btn--red" type="button">Delete</button>
+							&nbsp;&nbsp;&nbsp;&nbsp;<a type="button" class="btn btn-warning" href="/delete-comic?id=${id}">Delete</a>
 						</div>
 					</div>
 

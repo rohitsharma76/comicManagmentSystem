@@ -64,7 +64,7 @@
 }
     .grid-container {
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto ;
+  grid-template-columns: auto auto auto  ;
   grid-gap: 10px;
   background-color: #FFFFFF;
   padding: 10px;
@@ -120,10 +120,10 @@
               <div class="grid-container">
                 <c:forEach items="${comicsList}" var="comic">
                 <div class="d-block d-md-flex listing vertical">
-                  <a href="#" class="img d-block" style="background-image: url('../../images/comiccover/${comic.imageUrl}')"></a>
+                  <a href="#" class="img d-block" style="background-image: url('../../images/comiccover/${comic.imageUrl}');height:200px;width:200px;align:middle"></a>
                   <div class="lh-content">
                     <span class="category" style="white-space:noWrap">${comic.charcterName}</span>
-                    <h3><a href="/View-comic?id=${comic.id}" title="click for More Info">${comic.comicName}</a></h3>
+                    <h3 style="white-space:nowrap"><a href="/View-comic?id=${comic.id}" title="click for More Info">${comic.comicName}</a></h3>
                     <address>${comic.serialNumber}</address>
                     <address>${comic.publicationHouse}</address>
                     <p class="mb-0">
