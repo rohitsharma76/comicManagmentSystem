@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.in28minutes.springboot.web.model.bms.BooksUser;
 import com.in28minutes.springboot.web.model.bms.BooksUserRepository;
-import com.in28minutes.springboot.web.model.rms.User;
-import com.in28minutes.springboot.web.model.rms.UserRepository;
 import com.in28minutes.springboot.web.service.BooksLoginServiceImpl;
-import com.in28minutes.springboot.web.service.LoginServiceImpl;
 
 @Controller
 @SessionAttributes("user")

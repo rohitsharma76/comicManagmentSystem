@@ -5,20 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.management.RuntimeErrorException;
-import javax.persistence.EntityManager;
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
-import org.aspectj.apache.bcel.generic.MULTIANEWARRAY;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,11 +25,6 @@ import com.in28minutes.springboot.web.model.bms.BooksUserRepository;
 import com.in28minutes.springboot.web.model.bms.CharcterMaster;
 import com.in28minutes.springboot.web.model.bms.ComicDetail;
 import com.in28minutes.springboot.web.model.bms.PublicationMaster;
-import com.in28minutes.springboot.web.model.rms.AddressDetail;
-import com.in28minutes.springboot.web.model.rms.User;
-import com.in28minutes.springboot.web.model.rms.UserRepository;
-import com.in28minutes.springboot.web.service.TodoService;
-import com.in28minutes.springboot.web.service.AddressDetailDAOService;
 import com.in28minutes.springboot.web.service.ComicDetailService;
 
 

@@ -7,10 +7,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-
 
 import com.in28minutes.springboot.web.model.rms.AddressDetail;
 import com.in28minutes.springboot.web.model.rms.AddressDetailRepository;
@@ -61,7 +58,7 @@ public class AddressDetailDAOService {
 
 		for (AddressDetail userBranch : allUserBranches) 
 		{
-			if (userBranch.getId() == id)
+			if (userBranch.getId().equals(id))
 				return userBranch;
 
 		}
