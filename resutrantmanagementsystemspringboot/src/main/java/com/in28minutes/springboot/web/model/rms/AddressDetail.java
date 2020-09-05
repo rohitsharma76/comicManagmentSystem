@@ -1,7 +1,5 @@
 package com.in28minutes.springboot.web.model.rms;
 
-import java.util.Date;
-
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,12 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
-
-
-import com.in28minutes.springboot.web.model.AuditModel;
 
 @Entity
 @Table(name = "BranchAddress")

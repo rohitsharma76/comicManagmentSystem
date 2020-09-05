@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
-import com.in28minutes.springboot.web.model.AuditModel;
-
 @Entity
 	public class User  {
 
